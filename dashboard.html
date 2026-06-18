@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGEU - Panel Principal</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo-area">
+            <h1>SGEU - UPDS</h1>
+        </div>
+        <div class="user-area">
+            <span id="userBadge" class="badge">Cargando...</span>
+            <button id="logoutBtn" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <main class="dashboard-layout">
+        <section id="panelRegistro" class="card form-card hidden">
+            <h3>Registrar Nuevo Incidente</h3>
+            <form id="incidenteForm">
+                <div class="form-group">
+                    <label for="titulo">Título Corto</label>
+                    <input type="text" id="titulo" required placeholder="Ej. Corte en Lab 3">
+                </div>
+                <div class="form-group">
+                    <label for="tipoEmergencia">Tipo de Emergencia</label>
+                    <select id="tipoEmergencia" required>
+                        <option value="Incendio">Incendio</option>
+                        <option value="Corte de Energía">Corte de Energía</option>
+                        <option value="Accidente">Accidente</option>
+                        <option value="Inundación">Inundación</option>
+                        <option value="Seguridad">Seguridad</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+               <div class="form-group">
+    <label for="selectSector">Sector / Bloque</label>
+    <select id="selectSector" required>
+        <option value="">-- Seleccione un Sector --</option>
+        <option value="central">Bloque Central (Pisos)</option>
+        <option value="salud">Facultad de Ciencias de la Salud</option>
+        <option value="cafeteria">Cafetería</option>
+        <option value="cancha">Cancha Deportiva</option>
+    </select>
+</div>
+
+<div class="form-group id-dependiente hidden" id="grupoPiso">
+    <label for="selectPiso">Piso / Planta</label>
+    <select id="selectPiso">
+        <option value="">-- Seleccione el Piso --</option>
+    </select>
+</div>
+
+<div class="form-group id-dependiente hidden" id="grupoEspacio">
+    <label for="selectEspacio">Espacio / Aula Específica</label>
+    <select id="selectEspacio" required>
+        <option value="">-- Seleccione la Ubicación --</option>
+    </select>
+</div>
+                <div class="form-group">
+                    <label for="descripcion">Detalles del Incidente</label>
+                    <textarea id="descripcion" rows="4" required placeholder="Describa la situación actual..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary">Enviar Reporte</button>
+            </form>
+        </section>
+
+        <section class="card table-card">
+            <div class="table-header">
+                <h3>Monitor de Incidentes en Tiempo Real</h3>
+                <div class="filter-group">
+                    <label for="filtroEstado">Filtrar:</label>
+                    <select id="filtroEstado">
+                        <option value="Todos">Todos</option>
+                        <option value="Pendiente">Pendientes</option>
+                        <option value="En proceso">En Proceso</option>
+                        <option value="Resuelto">Resueltos</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="table-responsive">
+                <table id="tablaIncidentes">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Emergencia</th>
+                            <th>Título</th>
+                            <th>Ubicación</th>
+                            <th>Fecha/Hora</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaIncidentes">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="js/controllers/dashboardController.js"></script>
+</body>
+</html>
